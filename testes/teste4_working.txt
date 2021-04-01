@@ -1,0 +1,22 @@
+# teste 4 funcional
+def main():Void{
+
+    n:Int = 2345;
+    
+    int_reverse:Int = reverse_int(n);
+    
+    return;
+}
+
+def reverse_int(n:Int):Int{
+    rev:Int = 0;
+    remainder:Int = 0;
+
+    while(n != 0){
+        remainder = n % 10;
+        rev = rev * 10 + remainder;
+        n = n / 10;
+    }
+
+    return rev;
+}
