@@ -29,11 +29,11 @@ A definition has the same contents, but also has a block, corresponding to the b
   }
 
 A block is always started and ended with curly parenthesis and features zero or more statements:
-  Return statements can have an expression or not (for Void functions): return; or return 1 + 1;
-  Expressions are statements: 1; or f(3);
-  if statements have (at least) a condition and a (then) block. Optionally they can have an else block, separated by a else keyword.
+  Return statements can have an expression or not (for Void functions): return; or return 1 + 1
+  Expressions are statements: 1; or f(3)
+  if statements have (at least) a condition and a (then) block. Optionally they can have an else block, separated by a else keyword
   while blocks have a similar structure with a condition and a block.
-  Variable declarations require a type and a starting value a:Int = 0;
+  Variable declarations require a type and a starting value a:Int = 0
   Variable assignments do not require the type a = 1.
   
  Expressions represent values. They can be:
