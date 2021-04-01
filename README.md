@@ -33,7 +33,7 @@ A program is made of several declarations or definitions:
   }
 ```
 
-A block is always started and ended with curly parenthesis and features zero or more statements:
+- A block is always started and ended with curly parenthesis and features zero or more statements:
 ```python 
   - Return statements can have an expression or not (for Void functions): return; or return 1 + 1;
   - Expressions are statements: 1; or f(3);
@@ -46,7 +46,7 @@ A block is always started and ended with curly parenthesis and features zero or 
 ```
 
 
- Expressions represent values. They can be:
+ - Expressions represent values. They can be:
   ```python
   - Binary operators, with a C-like precedence and parenthesis to force other precedences: &&, ||, ==, !=, 
  >=, >, <=, <, +, -, *, /, % em que a divisão tem sempre a semântica da divisão decimal.
