@@ -16,13 +16,14 @@ Casual is whitespace insensitive
 
 A program is made of several declarations or definitions: 
 
-```python
-- A declaration includes the name of the function, its arguments and the returning type 
 
-  decl max (a:Int, b:Int):Int
+- A declaration includes the name of the function, its arguments and the returning type 
+```python
+  decl max (a:Int, b:Int):Int´´´
+  
   
 - A definition has the same contents, but also has a block, corresponding to the body of the function
-
+´´´python
   def max (a:Int, b:Int):Int {
     if a > b {
       return a;
@@ -30,9 +31,9 @@ A program is made of several declarations or definitions:
     return b;
   }
 ```
-```python 
-A block is always started and ended with curly parenthesis and features zero or more statements:
 
+A block is always started and ended with curly parenthesis and features zero or more statements:
+```python 
   - Return statements can have an expression or not (for Void functions): return; or return 1 + 1;
   - Expressions are statements: 1; or f(3);
   - if statements have (at least) a condition and a (then) block. Optionally they can have an else block, separated by a else keyword.
@@ -42,9 +43,9 @@ A block is always started and ended with curly parenthesis and features zero or 
   - 
 ```
 
- ```python
+
  Expressions represent values. They can be:
- 
+  ```python
   - Binary operators, with a C-like precedence and parenthesis to force other precedences: &&, ||, ==, !=, >=, >, <=, <, +, -, *, /, % em que a divisão tem sempre a semântica da divisão decimal.
   - The not unary operator (!true)
   - Boolean literals (true, false)
