@@ -6,6 +6,7 @@ In this project, you will design an interpreter and a compiler for the Casual pr
 ## Project #1
 
 ## Phase 1
+
 In the first phase, you will design a tokenizer and a parser for the Casual programming language. Your program should detect syntactic errors, but not semantic ones (see examples).
 
 Language Description
