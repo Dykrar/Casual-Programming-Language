@@ -1,0 +1,17 @@
+# teste 1  not working
+decl oat():String
+
+def aot():String{
+    a:Int = 5;
+    a:Int = 10;
+
+    if a > b{
+        qwer = "Hello";
+        return qwer;
+    }
+    else {
+        qwer = "Goodbye";
+    }
+
+    return;
+}

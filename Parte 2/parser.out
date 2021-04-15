@@ -1,0 +1,3932 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     def_declr -> declaration def_declr
+Rule 2     def_declr -> definition def_declr
+Rule 3     def_declr -> declaration
+Rule 4     def_declr -> definition
+Rule 5     program -> def_declr
+Rule 6     empty -> <empty>
+Rule 7     declaration -> DECL VARIABLE LPAREN varg RPAREN COLON type
+Rule 8     declaration -> DECL VARIABLE LPAREN arg RPAREN COLON type
+Rule 9     definition -> DEF VARIABLE LPAREN arg RPAREN COLON type block
+Rule 10    definition -> DEF VARIABLE LPAREN varg RPAREN COLON type block
+Rule 11    varg -> <empty>
+Rule 12    arg -> VARIABLE COLON type
+Rule 13    arg -> VARIABLE COLON type COMMA arg
+Rule 14    block -> LBRACKET block_content RBRACKET
+Rule 15    block -> LBRACKET empty RBRACKET
+Rule 16    block_content -> statement block_content
+Rule 17    block_content -> statement
+Rule 18    statement -> return
+Rule 19    statement -> stat_expression
+Rule 20    statement -> if
+Rule 21    statement -> if_else
+Rule 22    statement -> while
+Rule 23    statement -> var_decl
+Rule 24    statement -> var_ass
+Rule 25    statement -> array_decl
+Rule 26    statement -> array_ass
+Rule 27    return -> RETURN SEMICOLONS
+Rule 28    return -> RETURN expression SEMICOLONS
+Rule 29    stat_expression -> expression SEMICOLONS
+Rule 30    if -> IF expression block
+Rule 31    if_else -> if ELSE block
+Rule 32    while -> WHILE expression block
+Rule 33    var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS
+Rule 34    array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS
+Rule 35    array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS
+Rule 36    type -> INT_TYPE
+Rule 37    type -> FLOAT_TYPE
+Rule 38    type -> STRING_TYPE
+Rule 39    type -> BOOL_TYPE
+Rule 40    type -> VOID_TYPE
+Rule 41    var_ass -> VARIABLE EQUALS expression SEMICOLONS
+Rule 42    expression -> expression PLUS expression
+Rule 43    expression -> expression MINUS expression
+Rule 44    expression -> expression TIMES expression
+Rule 45    expression -> expression DIVIDE expression
+Rule 46    expression -> expression COMP expression
+Rule 47    expression -> expression AND expression
+Rule 48    expression -> expression OR expression
+Rule 49    expression -> expression NOT_EQUALS expression
+Rule 50    expression -> expression GREATER_OR_EQUAL expression
+Rule 51    expression -> expression LESS_OR_EQUALS expression
+Rule 52    expression -> expression GREATER expression
+Rule 53    expression -> expression LESS expression
+Rule 54    expression -> expression MODULO expression
+Rule 55    expression -> MINUS expression
+Rule 56    expression -> LPAREN expression RPAREN
+Rule 57    expression -> INT
+Rule 58    expression -> FLOAT
+Rule 59    expression -> STRING
+Rule 60    expression -> TRUE
+Rule 61    expression -> FALSE
+Rule 62    expression -> VARIABLE
+Rule 63    expression -> NOT expression
+Rule 64    expression -> VARIABLE LRPAREN expression RRPAREN
+Rule 65    expression -> GET_ARRAY LRPAREN expression RRPAREN
+Rule 66    expression -> VARIABLE LPAREN argument_f RPAREN
+Rule 67    argf -> <empty>
+Rule 68    arg_f -> expression
+Rule 69    arg_f -> expression COMMA arg_f
+Rule 70    argument_f -> arg_f
+Rule 71    argument_f -> argf
+
+Terminals, with rules where they appear
+
+AND                  : 47
+BOOL_TYPE            : 39
+COLON                : 7 8 9 10 12 13 33 34
+COMMA                : 13 69
+COMP                 : 46
+DECL                 : 7 8
+DEF                  : 9 10
+DIVIDE               : 45
+ELSE                 : 31
+EQUALS               : 33 35 41
+FALSE                : 61
+FLOAT                : 58
+FLOAT_TYPE           : 37
+GET_ARRAY            : 65
+GREATER              : 52
+GREATER_OR_EQUAL     : 50
+IF                   : 30
+INT                  : 57
+INT_TYPE             : 36
+LBRACKET             : 14 15
+LESS                 : 53
+LESS_OR_EQUALS       : 51
+LPAREN               : 7 8 9 10 56 66
+LRPAREN              : 34 35 64 65
+MINUS                : 43 55
+MODULO               : 54
+NOT                  : 63
+NOT_EQUALS           : 49
+OR                   : 48
+PLUS                 : 42
+RBRACKET             : 14 15
+RETURN               : 27 28
+RPAREN               : 7 8 9 10 56 66
+RRPAREN              : 34 35 64 65
+SEMICOLONS           : 27 28 29 33 34 35 41
+STRING               : 59
+STRING_TYPE          : 38
+TIMES                : 44
+TRUE                 : 60
+VARIABLE             : 7 8 9 10 12 13 33 34 35 41 62 64 66
+VOID_TYPE            : 40
+WHILE                : 32
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg                  : 8 9 13
+arg_f                : 69 70
+argf                 : 71
+argument_f           : 66
+array_ass            : 26
+array_decl           : 25
+block                : 9 10 30 31 32
+block_content        : 14 16
+declaration          : 1 3
+def_declr            : 1 2 5
+definition           : 2 4
+empty                : 15
+expression           : 28 29 30 32 33 35 35 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 56 63 64 65 68 69
+if                   : 20 31
+if_else              : 21
+program              : 0
+return               : 18
+stat_expression      : 19
+statement            : 16 17
+type                 : 7 8 9 10 12 13 33 34
+var_ass              : 24
+var_decl             : 23
+varg                 : 7 10
+while                : 22
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (5) program -> . def_declr
+    (1) def_declr -> . declaration def_declr
+    (2) def_declr -> . definition def_declr
+    (3) def_declr -> . declaration
+    (4) def_declr -> . definition
+    (7) declaration -> . DECL VARIABLE LPAREN varg RPAREN COLON type
+    (8) declaration -> . DECL VARIABLE LPAREN arg RPAREN COLON type
+    (9) definition -> . DEF VARIABLE LPAREN arg RPAREN COLON type block
+    (10) definition -> . DEF VARIABLE LPAREN varg RPAREN COLON type block
+
+    DECL            shift and go to state 5
+    DEF             shift and go to state 6
+
+    program                        shift and go to state 1
+    def_declr                      shift and go to state 2
+    declaration                    shift and go to state 3
+    definition                     shift and go to state 4
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (5) program -> def_declr .
+
+    $end            reduce using rule 5 (program -> def_declr .)
+
+
+state 3
+
+    (1) def_declr -> declaration . def_declr
+    (3) def_declr -> declaration .
+    (1) def_declr -> . declaration def_declr
+    (2) def_declr -> . definition def_declr
+    (3) def_declr -> . declaration
+    (4) def_declr -> . definition
+    (7) declaration -> . DECL VARIABLE LPAREN varg RPAREN COLON type
+    (8) declaration -> . DECL VARIABLE LPAREN arg RPAREN COLON type
+    (9) definition -> . DEF VARIABLE LPAREN arg RPAREN COLON type block
+    (10) definition -> . DEF VARIABLE LPAREN varg RPAREN COLON type block
+
+    $end            reduce using rule 3 (def_declr -> declaration .)
+    DECL            shift and go to state 5
+    DEF             shift and go to state 6
+
+    declaration                    shift and go to state 3
+    def_declr                      shift and go to state 7
+    definition                     shift and go to state 4
+
+state 4
+
+    (2) def_declr -> definition . def_declr
+    (4) def_declr -> definition .
+    (1) def_declr -> . declaration def_declr
+    (2) def_declr -> . definition def_declr
+    (3) def_declr -> . declaration
+    (4) def_declr -> . definition
+    (7) declaration -> . DECL VARIABLE LPAREN varg RPAREN COLON type
+    (8) declaration -> . DECL VARIABLE LPAREN arg RPAREN COLON type
+    (9) definition -> . DEF VARIABLE LPAREN arg RPAREN COLON type block
+    (10) definition -> . DEF VARIABLE LPAREN varg RPAREN COLON type block
+
+    $end            reduce using rule 4 (def_declr -> definition .)
+    DECL            shift and go to state 5
+    DEF             shift and go to state 6
+
+    definition                     shift and go to state 4
+    def_declr                      shift and go to state 8
+    declaration                    shift and go to state 3
+
+state 5
+
+    (7) declaration -> DECL . VARIABLE LPAREN varg RPAREN COLON type
+    (8) declaration -> DECL . VARIABLE LPAREN arg RPAREN COLON type
+
+    VARIABLE        shift and go to state 9
+
+
+state 6
+
+    (9) definition -> DEF . VARIABLE LPAREN arg RPAREN COLON type block
+    (10) definition -> DEF . VARIABLE LPAREN varg RPAREN COLON type block
+
+    VARIABLE        shift and go to state 10
+
+
+state 7
+
+    (1) def_declr -> declaration def_declr .
+
+    $end            reduce using rule 1 (def_declr -> declaration def_declr .)
+
+
+state 8
+
+    (2) def_declr -> definition def_declr .
+
+    $end            reduce using rule 2 (def_declr -> definition def_declr .)
+
+
+state 9
+
+    (7) declaration -> DECL VARIABLE . LPAREN varg RPAREN COLON type
+    (8) declaration -> DECL VARIABLE . LPAREN arg RPAREN COLON type
+
+    LPAREN          shift and go to state 11
+
+
+state 10
+
+    (9) definition -> DEF VARIABLE . LPAREN arg RPAREN COLON type block
+    (10) definition -> DEF VARIABLE . LPAREN varg RPAREN COLON type block
+
+    LPAREN          shift and go to state 12
+
+
+state 11
+
+    (7) declaration -> DECL VARIABLE LPAREN . varg RPAREN COLON type
+    (8) declaration -> DECL VARIABLE LPAREN . arg RPAREN COLON type
+    (11) varg -> .
+    (12) arg -> . VARIABLE COLON type
+    (13) arg -> . VARIABLE COLON type COMMA arg
+
+    RPAREN          reduce using rule 11 (varg -> .)
+    VARIABLE        shift and go to state 13
+
+    varg                           shift and go to state 14
+    arg                            shift and go to state 15
+
+state 12
+
+    (9) definition -> DEF VARIABLE LPAREN . arg RPAREN COLON type block
+    (10) definition -> DEF VARIABLE LPAREN . varg RPAREN COLON type block
+    (12) arg -> . VARIABLE COLON type
+    (13) arg -> . VARIABLE COLON type COMMA arg
+    (11) varg -> .
+
+    VARIABLE        shift and go to state 13
+    RPAREN          reduce using rule 11 (varg -> .)
+
+    arg                            shift and go to state 16
+    varg                           shift and go to state 17
+
+state 13
+
+    (12) arg -> VARIABLE . COLON type
+    (13) arg -> VARIABLE . COLON type COMMA arg
+
+    COLON           shift and go to state 18
+
+
+state 14
+
+    (7) declaration -> DECL VARIABLE LPAREN varg . RPAREN COLON type
+
+    RPAREN          shift and go to state 19
+
+
+state 15
+
+    (8) declaration -> DECL VARIABLE LPAREN arg . RPAREN COLON type
+
+    RPAREN          shift and go to state 20
+
+
+state 16
+
+    (9) definition -> DEF VARIABLE LPAREN arg . RPAREN COLON type block
+
+    RPAREN          shift and go to state 21
+
+
+state 17
+
+    (10) definition -> DEF VARIABLE LPAREN varg . RPAREN COLON type block
+
+    RPAREN          shift and go to state 22
+
+
+state 18
+
+    (12) arg -> VARIABLE COLON . type
+    (13) arg -> VARIABLE COLON . type COMMA arg
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 23
+
+state 19
+
+    (7) declaration -> DECL VARIABLE LPAREN varg RPAREN . COLON type
+
+    COLON           shift and go to state 29
+
+
+state 20
+
+    (8) declaration -> DECL VARIABLE LPAREN arg RPAREN . COLON type
+
+    COLON           shift and go to state 30
+
+
+state 21
+
+    (9) definition -> DEF VARIABLE LPAREN arg RPAREN . COLON type block
+
+    COLON           shift and go to state 31
+
+
+state 22
+
+    (10) definition -> DEF VARIABLE LPAREN varg RPAREN . COLON type block
+
+    COLON           shift and go to state 32
+
+
+state 23
+
+    (12) arg -> VARIABLE COLON type .
+    (13) arg -> VARIABLE COLON type . COMMA arg
+
+    RPAREN          reduce using rule 12 (arg -> VARIABLE COLON type .)
+    COMMA           shift and go to state 33
+
+
+state 24
+
+    (36) type -> INT_TYPE .
+
+    COMMA           reduce using rule 36 (type -> INT_TYPE .)
+    RPAREN          reduce using rule 36 (type -> INT_TYPE .)
+    DECL            reduce using rule 36 (type -> INT_TYPE .)
+    DEF             reduce using rule 36 (type -> INT_TYPE .)
+    $end            reduce using rule 36 (type -> INT_TYPE .)
+    LBRACKET        reduce using rule 36 (type -> INT_TYPE .)
+    EQUALS          reduce using rule 36 (type -> INT_TYPE .)
+    RRPAREN         reduce using rule 36 (type -> INT_TYPE .)
+
+
+state 25
+
+    (37) type -> FLOAT_TYPE .
+
+    COMMA           reduce using rule 37 (type -> FLOAT_TYPE .)
+    RPAREN          reduce using rule 37 (type -> FLOAT_TYPE .)
+    DECL            reduce using rule 37 (type -> FLOAT_TYPE .)
+    DEF             reduce using rule 37 (type -> FLOAT_TYPE .)
+    $end            reduce using rule 37 (type -> FLOAT_TYPE .)
+    LBRACKET        reduce using rule 37 (type -> FLOAT_TYPE .)
+    EQUALS          reduce using rule 37 (type -> FLOAT_TYPE .)
+    RRPAREN         reduce using rule 37 (type -> FLOAT_TYPE .)
+
+
+state 26
+
+    (38) type -> STRING_TYPE .
+
+    COMMA           reduce using rule 38 (type -> STRING_TYPE .)
+    RPAREN          reduce using rule 38 (type -> STRING_TYPE .)
+    DECL            reduce using rule 38 (type -> STRING_TYPE .)
+    DEF             reduce using rule 38 (type -> STRING_TYPE .)
+    $end            reduce using rule 38 (type -> STRING_TYPE .)
+    LBRACKET        reduce using rule 38 (type -> STRING_TYPE .)
+    EQUALS          reduce using rule 38 (type -> STRING_TYPE .)
+    RRPAREN         reduce using rule 38 (type -> STRING_TYPE .)
+
+
+state 27
+
+    (39) type -> BOOL_TYPE .
+
+    COMMA           reduce using rule 39 (type -> BOOL_TYPE .)
+    RPAREN          reduce using rule 39 (type -> BOOL_TYPE .)
+    DECL            reduce using rule 39 (type -> BOOL_TYPE .)
+    DEF             reduce using rule 39 (type -> BOOL_TYPE .)
+    $end            reduce using rule 39 (type -> BOOL_TYPE .)
+    LBRACKET        reduce using rule 39 (type -> BOOL_TYPE .)
+    EQUALS          reduce using rule 39 (type -> BOOL_TYPE .)
+    RRPAREN         reduce using rule 39 (type -> BOOL_TYPE .)
+
+
+state 28
+
+    (40) type -> VOID_TYPE .
+
+    COMMA           reduce using rule 40 (type -> VOID_TYPE .)
+    RPAREN          reduce using rule 40 (type -> VOID_TYPE .)
+    DECL            reduce using rule 40 (type -> VOID_TYPE .)
+    DEF             reduce using rule 40 (type -> VOID_TYPE .)
+    $end            reduce using rule 40 (type -> VOID_TYPE .)
+    LBRACKET        reduce using rule 40 (type -> VOID_TYPE .)
+    EQUALS          reduce using rule 40 (type -> VOID_TYPE .)
+    RRPAREN         reduce using rule 40 (type -> VOID_TYPE .)
+
+
+state 29
+
+    (7) declaration -> DECL VARIABLE LPAREN varg RPAREN COLON . type
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 34
+
+state 30
+
+    (8) declaration -> DECL VARIABLE LPAREN arg RPAREN COLON . type
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 35
+
+state 31
+
+    (9) definition -> DEF VARIABLE LPAREN arg RPAREN COLON . type block
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 36
+
+state 32
+
+    (10) definition -> DEF VARIABLE LPAREN varg RPAREN COLON . type block
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 37
+
+state 33
+
+    (13) arg -> VARIABLE COLON type COMMA . arg
+    (12) arg -> . VARIABLE COLON type
+    (13) arg -> . VARIABLE COLON type COMMA arg
+
+    VARIABLE        shift and go to state 13
+
+    arg                            shift and go to state 38
+
+state 34
+
+    (7) declaration -> DECL VARIABLE LPAREN varg RPAREN COLON type .
+
+    DECL            reduce using rule 7 (declaration -> DECL VARIABLE LPAREN varg RPAREN COLON type .)
+    DEF             reduce using rule 7 (declaration -> DECL VARIABLE LPAREN varg RPAREN COLON type .)
+    $end            reduce using rule 7 (declaration -> DECL VARIABLE LPAREN varg RPAREN COLON type .)
+
+
+state 35
+
+    (8) declaration -> DECL VARIABLE LPAREN arg RPAREN COLON type .
+
+    DECL            reduce using rule 8 (declaration -> DECL VARIABLE LPAREN arg RPAREN COLON type .)
+    DEF             reduce using rule 8 (declaration -> DECL VARIABLE LPAREN arg RPAREN COLON type .)
+    $end            reduce using rule 8 (declaration -> DECL VARIABLE LPAREN arg RPAREN COLON type .)
+
+
+state 36
+
+    (9) definition -> DEF VARIABLE LPAREN arg RPAREN COLON type . block
+    (14) block -> . LBRACKET block_content RBRACKET
+    (15) block -> . LBRACKET empty RBRACKET
+
+    LBRACKET        shift and go to state 40
+
+    block                          shift and go to state 39
+
+state 37
+
+    (10) definition -> DEF VARIABLE LPAREN varg RPAREN COLON type . block
+    (14) block -> . LBRACKET block_content RBRACKET
+    (15) block -> . LBRACKET empty RBRACKET
+
+    LBRACKET        shift and go to state 40
+
+    block                          shift and go to state 41
+
+state 38
+
+    (13) arg -> VARIABLE COLON type COMMA arg .
+
+    RPAREN          reduce using rule 13 (arg -> VARIABLE COLON type COMMA arg .)
+
+
+state 39
+
+    (9) definition -> DEF VARIABLE LPAREN arg RPAREN COLON type block .
+
+    DECL            reduce using rule 9 (definition -> DEF VARIABLE LPAREN arg RPAREN COLON type block .)
+    DEF             reduce using rule 9 (definition -> DEF VARIABLE LPAREN arg RPAREN COLON type block .)
+    $end            reduce using rule 9 (definition -> DEF VARIABLE LPAREN arg RPAREN COLON type block .)
+
+
+state 40
+
+    (14) block -> LBRACKET . block_content RBRACKET
+    (15) block -> LBRACKET . empty RBRACKET
+    (16) block_content -> . statement block_content
+    (17) block_content -> . statement
+    (6) empty -> .
+    (18) statement -> . return
+    (19) statement -> . stat_expression
+    (20) statement -> . if
+    (21) statement -> . if_else
+    (22) statement -> . while
+    (23) statement -> . var_decl
+    (24) statement -> . var_ass
+    (25) statement -> . array_decl
+    (26) statement -> . array_ass
+    (27) return -> . RETURN SEMICOLONS
+    (28) return -> . RETURN expression SEMICOLONS
+    (29) stat_expression -> . expression SEMICOLONS
+    (30) if -> . IF expression block
+    (31) if_else -> . if ELSE block
+    (32) while -> . WHILE expression block
+    (33) var_decl -> . VARIABLE COLON type EQUALS expression SEMICOLONS
+    (41) var_ass -> . VARIABLE EQUALS expression SEMICOLONS
+    (34) array_decl -> . VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS
+    (35) array_ass -> . VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    RBRACKET        reduce using rule 6 (empty -> .)
+    RETURN          shift and go to state 54
+    IF              shift and go to state 56
+    WHILE           shift and go to state 57
+    VARIABLE        shift and go to state 58
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    block_content                  shift and go to state 42
+    empty                          shift and go to state 43
+    statement                      shift and go to state 44
+    return                         shift and go to state 45
+    stat_expression                shift and go to state 46
+    if                             shift and go to state 47
+    if_else                        shift and go to state 48
+    while                          shift and go to state 49
+    var_decl                       shift and go to state 50
+    var_ass                        shift and go to state 51
+    array_decl                     shift and go to state 52
+    array_ass                      shift and go to state 53
+    expression                     shift and go to state 55
+
+state 41
+
+    (10) definition -> DEF VARIABLE LPAREN varg RPAREN COLON type block .
+
+    DECL            reduce using rule 10 (definition -> DEF VARIABLE LPAREN varg RPAREN COLON type block .)
+    DEF             reduce using rule 10 (definition -> DEF VARIABLE LPAREN varg RPAREN COLON type block .)
+    $end            reduce using rule 10 (definition -> DEF VARIABLE LPAREN varg RPAREN COLON type block .)
+
+
+state 42
+
+    (14) block -> LBRACKET block_content . RBRACKET
+
+    RBRACKET        shift and go to state 68
+
+
+state 43
+
+    (15) block -> LBRACKET empty . RBRACKET
+
+    RBRACKET        shift and go to state 69
+
+
+state 44
+
+    (16) block_content -> statement . block_content
+    (17) block_content -> statement .
+    (16) block_content -> . statement block_content
+    (17) block_content -> . statement
+    (18) statement -> . return
+    (19) statement -> . stat_expression
+    (20) statement -> . if
+    (21) statement -> . if_else
+    (22) statement -> . while
+    (23) statement -> . var_decl
+    (24) statement -> . var_ass
+    (25) statement -> . array_decl
+    (26) statement -> . array_ass
+    (27) return -> . RETURN SEMICOLONS
+    (28) return -> . RETURN expression SEMICOLONS
+    (29) stat_expression -> . expression SEMICOLONS
+    (30) if -> . IF expression block
+    (31) if_else -> . if ELSE block
+    (32) while -> . WHILE expression block
+    (33) var_decl -> . VARIABLE COLON type EQUALS expression SEMICOLONS
+    (41) var_ass -> . VARIABLE EQUALS expression SEMICOLONS
+    (34) array_decl -> . VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS
+    (35) array_ass -> . VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    RBRACKET        reduce using rule 17 (block_content -> statement .)
+    RETURN          shift and go to state 54
+    IF              shift and go to state 56
+    WHILE           shift and go to state 57
+    VARIABLE        shift and go to state 58
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    statement                      shift and go to state 44
+    block_content                  shift and go to state 70
+    return                         shift and go to state 45
+    stat_expression                shift and go to state 46
+    if                             shift and go to state 47
+    if_else                        shift and go to state 48
+    while                          shift and go to state 49
+    var_decl                       shift and go to state 50
+    var_ass                        shift and go to state 51
+    array_decl                     shift and go to state 52
+    array_ass                      shift and go to state 53
+    expression                     shift and go to state 55
+
+state 45
+
+    (18) statement -> return .
+
+    RETURN          reduce using rule 18 (statement -> return .)
+    IF              reduce using rule 18 (statement -> return .)
+    WHILE           reduce using rule 18 (statement -> return .)
+    VARIABLE        reduce using rule 18 (statement -> return .)
+    MINUS           reduce using rule 18 (statement -> return .)
+    LPAREN          reduce using rule 18 (statement -> return .)
+    INT             reduce using rule 18 (statement -> return .)
+    FLOAT           reduce using rule 18 (statement -> return .)
+    STRING          reduce using rule 18 (statement -> return .)
+    TRUE            reduce using rule 18 (statement -> return .)
+    FALSE           reduce using rule 18 (statement -> return .)
+    NOT             reduce using rule 18 (statement -> return .)
+    GET_ARRAY       reduce using rule 18 (statement -> return .)
+    RBRACKET        reduce using rule 18 (statement -> return .)
+
+
+state 46
+
+    (19) statement -> stat_expression .
+
+    RETURN          reduce using rule 19 (statement -> stat_expression .)
+    IF              reduce using rule 19 (statement -> stat_expression .)
+    WHILE           reduce using rule 19 (statement -> stat_expression .)
+    VARIABLE        reduce using rule 19 (statement -> stat_expression .)
+    MINUS           reduce using rule 19 (statement -> stat_expression .)
+    LPAREN          reduce using rule 19 (statement -> stat_expression .)
+    INT             reduce using rule 19 (statement -> stat_expression .)
+    FLOAT           reduce using rule 19 (statement -> stat_expression .)
+    STRING          reduce using rule 19 (statement -> stat_expression .)
+    TRUE            reduce using rule 19 (statement -> stat_expression .)
+    FALSE           reduce using rule 19 (statement -> stat_expression .)
+    NOT             reduce using rule 19 (statement -> stat_expression .)
+    GET_ARRAY       reduce using rule 19 (statement -> stat_expression .)
+    RBRACKET        reduce using rule 19 (statement -> stat_expression .)
+
+
+state 47
+
+    (20) statement -> if .
+    (31) if_else -> if . ELSE block
+
+    RETURN          reduce using rule 20 (statement -> if .)
+    IF              reduce using rule 20 (statement -> if .)
+    WHILE           reduce using rule 20 (statement -> if .)
+    VARIABLE        reduce using rule 20 (statement -> if .)
+    MINUS           reduce using rule 20 (statement -> if .)
+    LPAREN          reduce using rule 20 (statement -> if .)
+    INT             reduce using rule 20 (statement -> if .)
+    FLOAT           reduce using rule 20 (statement -> if .)
+    STRING          reduce using rule 20 (statement -> if .)
+    TRUE            reduce using rule 20 (statement -> if .)
+    FALSE           reduce using rule 20 (statement -> if .)
+    NOT             reduce using rule 20 (statement -> if .)
+    GET_ARRAY       reduce using rule 20 (statement -> if .)
+    RBRACKET        reduce using rule 20 (statement -> if .)
+    ELSE            shift and go to state 71
+
+
+state 48
+
+    (21) statement -> if_else .
+
+    RETURN          reduce using rule 21 (statement -> if_else .)
+    IF              reduce using rule 21 (statement -> if_else .)
+    WHILE           reduce using rule 21 (statement -> if_else .)
+    VARIABLE        reduce using rule 21 (statement -> if_else .)
+    MINUS           reduce using rule 21 (statement -> if_else .)
+    LPAREN          reduce using rule 21 (statement -> if_else .)
+    INT             reduce using rule 21 (statement -> if_else .)
+    FLOAT           reduce using rule 21 (statement -> if_else .)
+    STRING          reduce using rule 21 (statement -> if_else .)
+    TRUE            reduce using rule 21 (statement -> if_else .)
+    FALSE           reduce using rule 21 (statement -> if_else .)
+    NOT             reduce using rule 21 (statement -> if_else .)
+    GET_ARRAY       reduce using rule 21 (statement -> if_else .)
+    RBRACKET        reduce using rule 21 (statement -> if_else .)
+
+
+state 49
+
+    (22) statement -> while .
+
+    RETURN          reduce using rule 22 (statement -> while .)
+    IF              reduce using rule 22 (statement -> while .)
+    WHILE           reduce using rule 22 (statement -> while .)
+    VARIABLE        reduce using rule 22 (statement -> while .)
+    MINUS           reduce using rule 22 (statement -> while .)
+    LPAREN          reduce using rule 22 (statement -> while .)
+    INT             reduce using rule 22 (statement -> while .)
+    FLOAT           reduce using rule 22 (statement -> while .)
+    STRING          reduce using rule 22 (statement -> while .)
+    TRUE            reduce using rule 22 (statement -> while .)
+    FALSE           reduce using rule 22 (statement -> while .)
+    NOT             reduce using rule 22 (statement -> while .)
+    GET_ARRAY       reduce using rule 22 (statement -> while .)
+    RBRACKET        reduce using rule 22 (statement -> while .)
+
+
+state 50
+
+    (23) statement -> var_decl .
+
+    RETURN          reduce using rule 23 (statement -> var_decl .)
+    IF              reduce using rule 23 (statement -> var_decl .)
+    WHILE           reduce using rule 23 (statement -> var_decl .)
+    VARIABLE        reduce using rule 23 (statement -> var_decl .)
+    MINUS           reduce using rule 23 (statement -> var_decl .)
+    LPAREN          reduce using rule 23 (statement -> var_decl .)
+    INT             reduce using rule 23 (statement -> var_decl .)
+    FLOAT           reduce using rule 23 (statement -> var_decl .)
+    STRING          reduce using rule 23 (statement -> var_decl .)
+    TRUE            reduce using rule 23 (statement -> var_decl .)
+    FALSE           reduce using rule 23 (statement -> var_decl .)
+    NOT             reduce using rule 23 (statement -> var_decl .)
+    GET_ARRAY       reduce using rule 23 (statement -> var_decl .)
+    RBRACKET        reduce using rule 23 (statement -> var_decl .)
+
+
+state 51
+
+    (24) statement -> var_ass .
+
+    RETURN          reduce using rule 24 (statement -> var_ass .)
+    IF              reduce using rule 24 (statement -> var_ass .)
+    WHILE           reduce using rule 24 (statement -> var_ass .)
+    VARIABLE        reduce using rule 24 (statement -> var_ass .)
+    MINUS           reduce using rule 24 (statement -> var_ass .)
+    LPAREN          reduce using rule 24 (statement -> var_ass .)
+    INT             reduce using rule 24 (statement -> var_ass .)
+    FLOAT           reduce using rule 24 (statement -> var_ass .)
+    STRING          reduce using rule 24 (statement -> var_ass .)
+    TRUE            reduce using rule 24 (statement -> var_ass .)
+    FALSE           reduce using rule 24 (statement -> var_ass .)
+    NOT             reduce using rule 24 (statement -> var_ass .)
+    GET_ARRAY       reduce using rule 24 (statement -> var_ass .)
+    RBRACKET        reduce using rule 24 (statement -> var_ass .)
+
+
+state 52
+
+    (25) statement -> array_decl .
+
+    RETURN          reduce using rule 25 (statement -> array_decl .)
+    IF              reduce using rule 25 (statement -> array_decl .)
+    WHILE           reduce using rule 25 (statement -> array_decl .)
+    VARIABLE        reduce using rule 25 (statement -> array_decl .)
+    MINUS           reduce using rule 25 (statement -> array_decl .)
+    LPAREN          reduce using rule 25 (statement -> array_decl .)
+    INT             reduce using rule 25 (statement -> array_decl .)
+    FLOAT           reduce using rule 25 (statement -> array_decl .)
+    STRING          reduce using rule 25 (statement -> array_decl .)
+    TRUE            reduce using rule 25 (statement -> array_decl .)
+    FALSE           reduce using rule 25 (statement -> array_decl .)
+    NOT             reduce using rule 25 (statement -> array_decl .)
+    GET_ARRAY       reduce using rule 25 (statement -> array_decl .)
+    RBRACKET        reduce using rule 25 (statement -> array_decl .)
+
+
+state 53
+
+    (26) statement -> array_ass .
+
+    RETURN          reduce using rule 26 (statement -> array_ass .)
+    IF              reduce using rule 26 (statement -> array_ass .)
+    WHILE           reduce using rule 26 (statement -> array_ass .)
+    VARIABLE        reduce using rule 26 (statement -> array_ass .)
+    MINUS           reduce using rule 26 (statement -> array_ass .)
+    LPAREN          reduce using rule 26 (statement -> array_ass .)
+    INT             reduce using rule 26 (statement -> array_ass .)
+    FLOAT           reduce using rule 26 (statement -> array_ass .)
+    STRING          reduce using rule 26 (statement -> array_ass .)
+    TRUE            reduce using rule 26 (statement -> array_ass .)
+    FALSE           reduce using rule 26 (statement -> array_ass .)
+    NOT             reduce using rule 26 (statement -> array_ass .)
+    GET_ARRAY       reduce using rule 26 (statement -> array_ass .)
+    RBRACKET        reduce using rule 26 (statement -> array_ass .)
+
+
+state 54
+
+    (27) return -> RETURN . SEMICOLONS
+    (28) return -> RETURN . expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    SEMICOLONS      shift and go to state 72
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 73
+
+state 55
+
+    (29) stat_expression -> expression . SEMICOLONS
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      shift and go to state 75
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 56
+
+    (30) if -> IF . expression block
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 89
+
+state 57
+
+    (32) while -> WHILE . expression block
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 90
+
+state 58
+
+    (33) var_decl -> VARIABLE . COLON type EQUALS expression SEMICOLONS
+    (41) var_ass -> VARIABLE . EQUALS expression SEMICOLONS
+    (34) array_decl -> VARIABLE . COLON LRPAREN type RRPAREN SEMICOLONS
+    (35) array_ass -> VARIABLE . LRPAREN expression RRPAREN EQUALS expression SEMICOLONS
+    (62) expression -> VARIABLE .
+    (64) expression -> VARIABLE . LRPAREN expression RRPAREN
+    (66) expression -> VARIABLE . LPAREN argument_f RPAREN
+
+    COLON           shift and go to state 91
+    EQUALS          shift and go to state 92
+    LRPAREN         shift and go to state 93
+    SEMICOLONS      reduce using rule 62 (expression -> VARIABLE .)
+    PLUS            reduce using rule 62 (expression -> VARIABLE .)
+    MINUS           reduce using rule 62 (expression -> VARIABLE .)
+    TIMES           reduce using rule 62 (expression -> VARIABLE .)
+    DIVIDE          reduce using rule 62 (expression -> VARIABLE .)
+    COMP            reduce using rule 62 (expression -> VARIABLE .)
+    AND             reduce using rule 62 (expression -> VARIABLE .)
+    OR              reduce using rule 62 (expression -> VARIABLE .)
+    NOT_EQUALS      reduce using rule 62 (expression -> VARIABLE .)
+    GREATER_OR_EQUAL reduce using rule 62 (expression -> VARIABLE .)
+    LESS_OR_EQUALS  reduce using rule 62 (expression -> VARIABLE .)
+    GREATER         reduce using rule 62 (expression -> VARIABLE .)
+    LESS            reduce using rule 62 (expression -> VARIABLE .)
+    MODULO          reduce using rule 62 (expression -> VARIABLE .)
+    LPAREN          shift and go to state 94
+
+
+state 59
+
+    (55) expression -> MINUS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 95
+
+state 60
+
+    (56) expression -> LPAREN . expression RPAREN
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 96
+
+state 61
+
+    (57) expression -> INT .
+
+    SEMICOLONS      reduce using rule 57 (expression -> INT .)
+    PLUS            reduce using rule 57 (expression -> INT .)
+    MINUS           reduce using rule 57 (expression -> INT .)
+    TIMES           reduce using rule 57 (expression -> INT .)
+    DIVIDE          reduce using rule 57 (expression -> INT .)
+    COMP            reduce using rule 57 (expression -> INT .)
+    AND             reduce using rule 57 (expression -> INT .)
+    OR              reduce using rule 57 (expression -> INT .)
+    NOT_EQUALS      reduce using rule 57 (expression -> INT .)
+    GREATER_OR_EQUAL reduce using rule 57 (expression -> INT .)
+    LESS_OR_EQUALS  reduce using rule 57 (expression -> INT .)
+    GREATER         reduce using rule 57 (expression -> INT .)
+    LESS            reduce using rule 57 (expression -> INT .)
+    MODULO          reduce using rule 57 (expression -> INT .)
+    LBRACKET        reduce using rule 57 (expression -> INT .)
+    RPAREN          reduce using rule 57 (expression -> INT .)
+    RRPAREN         reduce using rule 57 (expression -> INT .)
+    COMMA           reduce using rule 57 (expression -> INT .)
+
+
+state 62
+
+    (58) expression -> FLOAT .
+
+    SEMICOLONS      reduce using rule 58 (expression -> FLOAT .)
+    PLUS            reduce using rule 58 (expression -> FLOAT .)
+    MINUS           reduce using rule 58 (expression -> FLOAT .)
+    TIMES           reduce using rule 58 (expression -> FLOAT .)
+    DIVIDE          reduce using rule 58 (expression -> FLOAT .)
+    COMP            reduce using rule 58 (expression -> FLOAT .)
+    AND             reduce using rule 58 (expression -> FLOAT .)
+    OR              reduce using rule 58 (expression -> FLOAT .)
+    NOT_EQUALS      reduce using rule 58 (expression -> FLOAT .)
+    GREATER_OR_EQUAL reduce using rule 58 (expression -> FLOAT .)
+    LESS_OR_EQUALS  reduce using rule 58 (expression -> FLOAT .)
+    GREATER         reduce using rule 58 (expression -> FLOAT .)
+    LESS            reduce using rule 58 (expression -> FLOAT .)
+    MODULO          reduce using rule 58 (expression -> FLOAT .)
+    LBRACKET        reduce using rule 58 (expression -> FLOAT .)
+    RPAREN          reduce using rule 58 (expression -> FLOAT .)
+    RRPAREN         reduce using rule 58 (expression -> FLOAT .)
+    COMMA           reduce using rule 58 (expression -> FLOAT .)
+
+
+state 63
+
+    (59) expression -> STRING .
+
+    SEMICOLONS      reduce using rule 59 (expression -> STRING .)
+    PLUS            reduce using rule 59 (expression -> STRING .)
+    MINUS           reduce using rule 59 (expression -> STRING .)
+    TIMES           reduce using rule 59 (expression -> STRING .)
+    DIVIDE          reduce using rule 59 (expression -> STRING .)
+    COMP            reduce using rule 59 (expression -> STRING .)
+    AND             reduce using rule 59 (expression -> STRING .)
+    OR              reduce using rule 59 (expression -> STRING .)
+    NOT_EQUALS      reduce using rule 59 (expression -> STRING .)
+    GREATER_OR_EQUAL reduce using rule 59 (expression -> STRING .)
+    LESS_OR_EQUALS  reduce using rule 59 (expression -> STRING .)
+    GREATER         reduce using rule 59 (expression -> STRING .)
+    LESS            reduce using rule 59 (expression -> STRING .)
+    MODULO          reduce using rule 59 (expression -> STRING .)
+    LBRACKET        reduce using rule 59 (expression -> STRING .)
+    RPAREN          reduce using rule 59 (expression -> STRING .)
+    RRPAREN         reduce using rule 59 (expression -> STRING .)
+    COMMA           reduce using rule 59 (expression -> STRING .)
+
+
+state 64
+
+    (60) expression -> TRUE .
+
+    SEMICOLONS      reduce using rule 60 (expression -> TRUE .)
+    PLUS            reduce using rule 60 (expression -> TRUE .)
+    MINUS           reduce using rule 60 (expression -> TRUE .)
+    TIMES           reduce using rule 60 (expression -> TRUE .)
+    DIVIDE          reduce using rule 60 (expression -> TRUE .)
+    COMP            reduce using rule 60 (expression -> TRUE .)
+    AND             reduce using rule 60 (expression -> TRUE .)
+    OR              reduce using rule 60 (expression -> TRUE .)
+    NOT_EQUALS      reduce using rule 60 (expression -> TRUE .)
+    GREATER_OR_EQUAL reduce using rule 60 (expression -> TRUE .)
+    LESS_OR_EQUALS  reduce using rule 60 (expression -> TRUE .)
+    GREATER         reduce using rule 60 (expression -> TRUE .)
+    LESS            reduce using rule 60 (expression -> TRUE .)
+    MODULO          reduce using rule 60 (expression -> TRUE .)
+    LBRACKET        reduce using rule 60 (expression -> TRUE .)
+    RPAREN          reduce using rule 60 (expression -> TRUE .)
+    RRPAREN         reduce using rule 60 (expression -> TRUE .)
+    COMMA           reduce using rule 60 (expression -> TRUE .)
+
+
+state 65
+
+    (61) expression -> FALSE .
+
+    SEMICOLONS      reduce using rule 61 (expression -> FALSE .)
+    PLUS            reduce using rule 61 (expression -> FALSE .)
+    MINUS           reduce using rule 61 (expression -> FALSE .)
+    TIMES           reduce using rule 61 (expression -> FALSE .)
+    DIVIDE          reduce using rule 61 (expression -> FALSE .)
+    COMP            reduce using rule 61 (expression -> FALSE .)
+    AND             reduce using rule 61 (expression -> FALSE .)
+    OR              reduce using rule 61 (expression -> FALSE .)
+    NOT_EQUALS      reduce using rule 61 (expression -> FALSE .)
+    GREATER_OR_EQUAL reduce using rule 61 (expression -> FALSE .)
+    LESS_OR_EQUALS  reduce using rule 61 (expression -> FALSE .)
+    GREATER         reduce using rule 61 (expression -> FALSE .)
+    LESS            reduce using rule 61 (expression -> FALSE .)
+    MODULO          reduce using rule 61 (expression -> FALSE .)
+    LBRACKET        reduce using rule 61 (expression -> FALSE .)
+    RPAREN          reduce using rule 61 (expression -> FALSE .)
+    RRPAREN         reduce using rule 61 (expression -> FALSE .)
+    COMMA           reduce using rule 61 (expression -> FALSE .)
+
+
+state 66
+
+    (63) expression -> NOT . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 97
+
+state 67
+
+    (65) expression -> GET_ARRAY . LRPAREN expression RRPAREN
+
+    LRPAREN         shift and go to state 98
+
+
+state 68
+
+    (14) block -> LBRACKET block_content RBRACKET .
+
+    DECL            reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    DEF             reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    $end            reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    RETURN          reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    IF              reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    WHILE           reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    VARIABLE        reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    MINUS           reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    LPAREN          reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    INT             reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    FLOAT           reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    STRING          reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    TRUE            reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    FALSE           reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    NOT             reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    GET_ARRAY       reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    RBRACKET        reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+    ELSE            reduce using rule 14 (block -> LBRACKET block_content RBRACKET .)
+
+
+state 69
+
+    (15) block -> LBRACKET empty RBRACKET .
+
+    DECL            reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    DEF             reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    $end            reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    RETURN          reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    IF              reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    WHILE           reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    VARIABLE        reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    MINUS           reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    LPAREN          reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    INT             reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    FLOAT           reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    STRING          reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    TRUE            reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    FALSE           reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    NOT             reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    GET_ARRAY       reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    RBRACKET        reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+    ELSE            reduce using rule 15 (block -> LBRACKET empty RBRACKET .)
+
+
+state 70
+
+    (16) block_content -> statement block_content .
+
+    RBRACKET        reduce using rule 16 (block_content -> statement block_content .)
+
+
+state 71
+
+    (31) if_else -> if ELSE . block
+    (14) block -> . LBRACKET block_content RBRACKET
+    (15) block -> . LBRACKET empty RBRACKET
+
+    LBRACKET        shift and go to state 40
+
+    block                          shift and go to state 99
+
+state 72
+
+    (27) return -> RETURN SEMICOLONS .
+
+    RETURN          reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    IF              reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    WHILE           reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    VARIABLE        reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    MINUS           reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    LPAREN          reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    INT             reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    FLOAT           reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    STRING          reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    TRUE            reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    FALSE           reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    NOT             reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    GET_ARRAY       reduce using rule 27 (return -> RETURN SEMICOLONS .)
+    RBRACKET        reduce using rule 27 (return -> RETURN SEMICOLONS .)
+
+
+state 73
+
+    (28) return -> RETURN expression . SEMICOLONS
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      shift and go to state 100
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 74
+
+    (62) expression -> VARIABLE .
+    (64) expression -> VARIABLE . LRPAREN expression RRPAREN
+    (66) expression -> VARIABLE . LPAREN argument_f RPAREN
+
+    SEMICOLONS      reduce using rule 62 (expression -> VARIABLE .)
+    PLUS            reduce using rule 62 (expression -> VARIABLE .)
+    MINUS           reduce using rule 62 (expression -> VARIABLE .)
+    TIMES           reduce using rule 62 (expression -> VARIABLE .)
+    DIVIDE          reduce using rule 62 (expression -> VARIABLE .)
+    COMP            reduce using rule 62 (expression -> VARIABLE .)
+    AND             reduce using rule 62 (expression -> VARIABLE .)
+    OR              reduce using rule 62 (expression -> VARIABLE .)
+    NOT_EQUALS      reduce using rule 62 (expression -> VARIABLE .)
+    GREATER_OR_EQUAL reduce using rule 62 (expression -> VARIABLE .)
+    LESS_OR_EQUALS  reduce using rule 62 (expression -> VARIABLE .)
+    GREATER         reduce using rule 62 (expression -> VARIABLE .)
+    LESS            reduce using rule 62 (expression -> VARIABLE .)
+    MODULO          reduce using rule 62 (expression -> VARIABLE .)
+    LBRACKET        reduce using rule 62 (expression -> VARIABLE .)
+    RPAREN          reduce using rule 62 (expression -> VARIABLE .)
+    RRPAREN         reduce using rule 62 (expression -> VARIABLE .)
+    COMMA           reduce using rule 62 (expression -> VARIABLE .)
+    LRPAREN         shift and go to state 101
+    LPAREN          shift and go to state 94
+
+
+state 75
+
+    (29) stat_expression -> expression SEMICOLONS .
+
+    RETURN          reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    IF              reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    WHILE           reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    VARIABLE        reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    MINUS           reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    LPAREN          reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    INT             reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    FLOAT           reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    STRING          reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    TRUE            reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    FALSE           reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    NOT             reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    GET_ARRAY       reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+    RBRACKET        reduce using rule 29 (stat_expression -> expression SEMICOLONS .)
+
+
+state 76
+
+    (42) expression -> expression PLUS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 102
+
+state 77
+
+    (43) expression -> expression MINUS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 103
+
+state 78
+
+    (44) expression -> expression TIMES . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 104
+
+state 79
+
+    (45) expression -> expression DIVIDE . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 105
+
+state 80
+
+    (46) expression -> expression COMP . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 106
+
+state 81
+
+    (47) expression -> expression AND . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 107
+
+state 82
+
+    (48) expression -> expression OR . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 108
+
+state 83
+
+    (49) expression -> expression NOT_EQUALS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 109
+
+state 84
+
+    (50) expression -> expression GREATER_OR_EQUAL . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 110
+
+state 85
+
+    (51) expression -> expression LESS_OR_EQUALS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 111
+
+state 86
+
+    (52) expression -> expression GREATER . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 112
+
+state 87
+
+    (53) expression -> expression LESS . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 113
+
+state 88
+
+    (54) expression -> expression MODULO . expression
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 114
+
+state 89
+
+    (30) if -> IF expression . block
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+    (14) block -> . LBRACKET block_content RBRACKET
+    (15) block -> . LBRACKET empty RBRACKET
+
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+    LBRACKET        shift and go to state 40
+
+    block                          shift and go to state 115
+
+state 90
+
+    (32) while -> WHILE expression . block
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+    (14) block -> . LBRACKET block_content RBRACKET
+    (15) block -> . LBRACKET empty RBRACKET
+
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+    LBRACKET        shift and go to state 40
+
+    block                          shift and go to state 116
+
+state 91
+
+    (33) var_decl -> VARIABLE COLON . type EQUALS expression SEMICOLONS
+    (34) array_decl -> VARIABLE COLON . LRPAREN type RRPAREN SEMICOLONS
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    LRPAREN         shift and go to state 118
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 117
+
+state 92
+
+    (41) var_ass -> VARIABLE EQUALS . expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 119
+
+state 93
+
+    (35) array_ass -> VARIABLE LRPAREN . expression RRPAREN EQUALS expression SEMICOLONS
+    (64) expression -> VARIABLE LRPAREN . expression RRPAREN
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 120
+
+state 94
+
+    (66) expression -> VARIABLE LPAREN . argument_f RPAREN
+    (70) argument_f -> . arg_f
+    (71) argument_f -> . argf
+    (68) arg_f -> . expression
+    (69) arg_f -> . expression COMMA arg_f
+    (67) argf -> .
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    RPAREN          reduce using rule 67 (argf -> .)
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    argument_f                     shift and go to state 121
+    arg_f                          shift and go to state 122
+    argf                           shift and go to state 123
+    expression                     shift and go to state 124
+
+state 95
+
+    (55) expression -> MINUS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 55 (expression -> MINUS expression .)
+    PLUS            reduce using rule 55 (expression -> MINUS expression .)
+    MINUS           reduce using rule 55 (expression -> MINUS expression .)
+    TIMES           reduce using rule 55 (expression -> MINUS expression .)
+    DIVIDE          reduce using rule 55 (expression -> MINUS expression .)
+    COMP            reduce using rule 55 (expression -> MINUS expression .)
+    AND             reduce using rule 55 (expression -> MINUS expression .)
+    OR              reduce using rule 55 (expression -> MINUS expression .)
+    NOT_EQUALS      reduce using rule 55 (expression -> MINUS expression .)
+    GREATER_OR_EQUAL reduce using rule 55 (expression -> MINUS expression .)
+    LESS_OR_EQUALS  reduce using rule 55 (expression -> MINUS expression .)
+    GREATER         reduce using rule 55 (expression -> MINUS expression .)
+    LESS            reduce using rule 55 (expression -> MINUS expression .)
+    MODULO          reduce using rule 55 (expression -> MINUS expression .)
+    LBRACKET        reduce using rule 55 (expression -> MINUS expression .)
+    RPAREN          reduce using rule 55 (expression -> MINUS expression .)
+    RRPAREN         reduce using rule 55 (expression -> MINUS expression .)
+    COMMA           reduce using rule 55 (expression -> MINUS expression .)
+
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! TIMES           [ shift and go to state 78 ]
+  ! DIVIDE          [ shift and go to state 79 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+  ! MODULO          [ shift and go to state 88 ]
+
+
+state 96
+
+    (56) expression -> LPAREN expression . RPAREN
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 125
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 97
+
+    (63) expression -> NOT expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 63 (expression -> NOT expression .)
+    COMP            reduce using rule 63 (expression -> NOT expression .)
+    AND             reduce using rule 63 (expression -> NOT expression .)
+    OR              reduce using rule 63 (expression -> NOT expression .)
+    NOT_EQUALS      reduce using rule 63 (expression -> NOT expression .)
+    GREATER_OR_EQUAL reduce using rule 63 (expression -> NOT expression .)
+    LESS_OR_EQUALS  reduce using rule 63 (expression -> NOT expression .)
+    GREATER         reduce using rule 63 (expression -> NOT expression .)
+    LESS            reduce using rule 63 (expression -> NOT expression .)
+    LBRACKET        reduce using rule 63 (expression -> NOT expression .)
+    RPAREN          reduce using rule 63 (expression -> NOT expression .)
+    RRPAREN         reduce using rule 63 (expression -> NOT expression .)
+    COMMA           reduce using rule 63 (expression -> NOT expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 63 (expression -> NOT expression .) ]
+  ! MINUS           [ reduce using rule 63 (expression -> NOT expression .) ]
+  ! TIMES           [ reduce using rule 63 (expression -> NOT expression .) ]
+  ! DIVIDE          [ reduce using rule 63 (expression -> NOT expression .) ]
+  ! MODULO          [ reduce using rule 63 (expression -> NOT expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 98
+
+    (65) expression -> GET_ARRAY LRPAREN . expression RRPAREN
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 126
+
+state 99
+
+    (31) if_else -> if ELSE block .
+
+    RETURN          reduce using rule 31 (if_else -> if ELSE block .)
+    IF              reduce using rule 31 (if_else -> if ELSE block .)
+    WHILE           reduce using rule 31 (if_else -> if ELSE block .)
+    VARIABLE        reduce using rule 31 (if_else -> if ELSE block .)
+    MINUS           reduce using rule 31 (if_else -> if ELSE block .)
+    LPAREN          reduce using rule 31 (if_else -> if ELSE block .)
+    INT             reduce using rule 31 (if_else -> if ELSE block .)
+    FLOAT           reduce using rule 31 (if_else -> if ELSE block .)
+    STRING          reduce using rule 31 (if_else -> if ELSE block .)
+    TRUE            reduce using rule 31 (if_else -> if ELSE block .)
+    FALSE           reduce using rule 31 (if_else -> if ELSE block .)
+    NOT             reduce using rule 31 (if_else -> if ELSE block .)
+    GET_ARRAY       reduce using rule 31 (if_else -> if ELSE block .)
+    RBRACKET        reduce using rule 31 (if_else -> if ELSE block .)
+
+
+state 100
+
+    (28) return -> RETURN expression SEMICOLONS .
+
+    RETURN          reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    IF              reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    WHILE           reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    VARIABLE        reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    MINUS           reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    LPAREN          reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    INT             reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    FLOAT           reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    STRING          reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    TRUE            reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    FALSE           reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    NOT             reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    GET_ARRAY       reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+    RBRACKET        reduce using rule 28 (return -> RETURN expression SEMICOLONS .)
+
+
+state 101
+
+    (64) expression -> VARIABLE LRPAREN . expression RRPAREN
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 127
+
+state 102
+
+    (42) expression -> expression PLUS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 42 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 42 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 42 (expression -> expression PLUS expression .)
+    COMP            reduce using rule 42 (expression -> expression PLUS expression .)
+    AND             reduce using rule 42 (expression -> expression PLUS expression .)
+    OR              reduce using rule 42 (expression -> expression PLUS expression .)
+    NOT_EQUALS      reduce using rule 42 (expression -> expression PLUS expression .)
+    GREATER_OR_EQUAL reduce using rule 42 (expression -> expression PLUS expression .)
+    LESS_OR_EQUALS  reduce using rule 42 (expression -> expression PLUS expression .)
+    GREATER         reduce using rule 42 (expression -> expression PLUS expression .)
+    LESS            reduce using rule 42 (expression -> expression PLUS expression .)
+    LBRACKET        reduce using rule 42 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 42 (expression -> expression PLUS expression .)
+    RRPAREN         reduce using rule 42 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 42 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! TIMES           [ reduce using rule 42 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 42 (expression -> expression PLUS expression .) ]
+  ! MODULO          [ reduce using rule 42 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 103
+
+    (43) expression -> expression MINUS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 43 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 43 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 43 (expression -> expression MINUS expression .)
+    COMP            reduce using rule 43 (expression -> expression MINUS expression .)
+    AND             reduce using rule 43 (expression -> expression MINUS expression .)
+    OR              reduce using rule 43 (expression -> expression MINUS expression .)
+    NOT_EQUALS      reduce using rule 43 (expression -> expression MINUS expression .)
+    GREATER_OR_EQUAL reduce using rule 43 (expression -> expression MINUS expression .)
+    LESS_OR_EQUALS  reduce using rule 43 (expression -> expression MINUS expression .)
+    GREATER         reduce using rule 43 (expression -> expression MINUS expression .)
+    LESS            reduce using rule 43 (expression -> expression MINUS expression .)
+    LBRACKET        reduce using rule 43 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 43 (expression -> expression MINUS expression .)
+    RRPAREN         reduce using rule 43 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 43 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! TIMES           [ reduce using rule 43 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 43 (expression -> expression MINUS expression .) ]
+  ! MODULO          [ reduce using rule 43 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 104
+
+    (44) expression -> expression TIMES expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 44 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 44 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 44 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 44 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 44 (expression -> expression TIMES expression .)
+    COMP            reduce using rule 44 (expression -> expression TIMES expression .)
+    AND             reduce using rule 44 (expression -> expression TIMES expression .)
+    OR              reduce using rule 44 (expression -> expression TIMES expression .)
+    NOT_EQUALS      reduce using rule 44 (expression -> expression TIMES expression .)
+    GREATER_OR_EQUAL reduce using rule 44 (expression -> expression TIMES expression .)
+    LESS_OR_EQUALS  reduce using rule 44 (expression -> expression TIMES expression .)
+    GREATER         reduce using rule 44 (expression -> expression TIMES expression .)
+    LESS            reduce using rule 44 (expression -> expression TIMES expression .)
+    MODULO          reduce using rule 44 (expression -> expression TIMES expression .)
+    LBRACKET        reduce using rule 44 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 44 (expression -> expression TIMES expression .)
+    RRPAREN         reduce using rule 44 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 44 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! TIMES           [ shift and go to state 78 ]
+  ! DIVIDE          [ shift and go to state 79 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+  ! MODULO          [ shift and go to state 88 ]
+
+
+state 105
+
+    (45) expression -> expression DIVIDE expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 45 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 45 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 45 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 45 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 45 (expression -> expression DIVIDE expression .)
+    COMP            reduce using rule 45 (expression -> expression DIVIDE expression .)
+    AND             reduce using rule 45 (expression -> expression DIVIDE expression .)
+    OR              reduce using rule 45 (expression -> expression DIVIDE expression .)
+    NOT_EQUALS      reduce using rule 45 (expression -> expression DIVIDE expression .)
+    GREATER_OR_EQUAL reduce using rule 45 (expression -> expression DIVIDE expression .)
+    LESS_OR_EQUALS  reduce using rule 45 (expression -> expression DIVIDE expression .)
+    GREATER         reduce using rule 45 (expression -> expression DIVIDE expression .)
+    LESS            reduce using rule 45 (expression -> expression DIVIDE expression .)
+    MODULO          reduce using rule 45 (expression -> expression DIVIDE expression .)
+    LBRACKET        reduce using rule 45 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 45 (expression -> expression DIVIDE expression .)
+    RRPAREN         reduce using rule 45 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 45 (expression -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! TIMES           [ shift and go to state 78 ]
+  ! DIVIDE          [ shift and go to state 79 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+  ! MODULO          [ shift and go to state 88 ]
+
+
+state 106
+
+    (46) expression -> expression COMP expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 46 (expression -> expression COMP expression .)
+    COMP            reduce using rule 46 (expression -> expression COMP expression .)
+    AND             reduce using rule 46 (expression -> expression COMP expression .)
+    OR              reduce using rule 46 (expression -> expression COMP expression .)
+    NOT_EQUALS      reduce using rule 46 (expression -> expression COMP expression .)
+    GREATER_OR_EQUAL reduce using rule 46 (expression -> expression COMP expression .)
+    LESS_OR_EQUALS  reduce using rule 46 (expression -> expression COMP expression .)
+    GREATER         reduce using rule 46 (expression -> expression COMP expression .)
+    LESS            reduce using rule 46 (expression -> expression COMP expression .)
+    LBRACKET        reduce using rule 46 (expression -> expression COMP expression .)
+    RPAREN          reduce using rule 46 (expression -> expression COMP expression .)
+    RRPAREN         reduce using rule 46 (expression -> expression COMP expression .)
+    COMMA           reduce using rule 46 (expression -> expression COMP expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 46 (expression -> expression COMP expression .) ]
+  ! MINUS           [ reduce using rule 46 (expression -> expression COMP expression .) ]
+  ! TIMES           [ reduce using rule 46 (expression -> expression COMP expression .) ]
+  ! DIVIDE          [ reduce using rule 46 (expression -> expression COMP expression .) ]
+  ! MODULO          [ reduce using rule 46 (expression -> expression COMP expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 107
+
+    (47) expression -> expression AND expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 47 (expression -> expression AND expression .)
+    AND             reduce using rule 47 (expression -> expression AND expression .)
+    OR              reduce using rule 47 (expression -> expression AND expression .)
+    LBRACKET        reduce using rule 47 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 47 (expression -> expression AND expression .)
+    RRPAREN         reduce using rule 47 (expression -> expression AND expression .)
+    COMMA           reduce using rule 47 (expression -> expression AND expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! COMP            [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! GREATER_OR_EQUAL [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! LESS_OR_EQUALS  [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! GREATER         [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! LESS            [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! MODULO          [ reduce using rule 47 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 108
+
+    (48) expression -> expression OR expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 48 (expression -> expression OR expression .)
+    AND             reduce using rule 48 (expression -> expression OR expression .)
+    OR              reduce using rule 48 (expression -> expression OR expression .)
+    LBRACKET        reduce using rule 48 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 48 (expression -> expression OR expression .)
+    RRPAREN         reduce using rule 48 (expression -> expression OR expression .)
+    COMMA           reduce using rule 48 (expression -> expression OR expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! COMP            [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! NOT_EQUALS      [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! GREATER_OR_EQUAL [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! LESS_OR_EQUALS  [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! GREATER         [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! LESS            [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! MODULO          [ reduce using rule 48 (expression -> expression OR expression .) ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 109
+
+    (49) expression -> expression NOT_EQUALS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    COMP            reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    AND             reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    OR              reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    NOT_EQUALS      reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    GREATER_OR_EQUAL reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    LESS_OR_EQUALS  reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    GREATER         reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    LESS            reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    LBRACKET        reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    RPAREN          reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    RRPAREN         reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    COMMA           reduce using rule 49 (expression -> expression NOT_EQUALS expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 49 (expression -> expression NOT_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 49 (expression -> expression NOT_EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 49 (expression -> expression NOT_EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 49 (expression -> expression NOT_EQUALS expression .) ]
+  ! MODULO          [ reduce using rule 49 (expression -> expression NOT_EQUALS expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 110
+
+    (50) expression -> expression GREATER_OR_EQUAL expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    COMP            reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    AND             reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    OR              reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    NOT_EQUALS      reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    GREATER_OR_EQUAL reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    LESS_OR_EQUALS  reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    GREATER         reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    LESS            reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    LBRACKET        reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    RPAREN          reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    RRPAREN         reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    COMMA           reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .) ]
+  ! MINUS           [ reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .) ]
+  ! TIMES           [ reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .) ]
+  ! DIVIDE          [ reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .) ]
+  ! MODULO          [ reduce using rule 50 (expression -> expression GREATER_OR_EQUAL expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 111
+
+    (51) expression -> expression LESS_OR_EQUALS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    COMP            reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    AND             reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    OR              reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    NOT_EQUALS      reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    GREATER_OR_EQUAL reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    LESS_OR_EQUALS  reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    GREATER         reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    LESS            reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    LBRACKET        reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    RPAREN          reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    RRPAREN         reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    COMMA           reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .) ]
+  ! MODULO          [ reduce using rule 51 (expression -> expression LESS_OR_EQUALS expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 112
+
+    (52) expression -> expression GREATER expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 52 (expression -> expression GREATER expression .)
+    COMP            reduce using rule 52 (expression -> expression GREATER expression .)
+    AND             reduce using rule 52 (expression -> expression GREATER expression .)
+    OR              reduce using rule 52 (expression -> expression GREATER expression .)
+    NOT_EQUALS      reduce using rule 52 (expression -> expression GREATER expression .)
+    GREATER_OR_EQUAL reduce using rule 52 (expression -> expression GREATER expression .)
+    LESS_OR_EQUALS  reduce using rule 52 (expression -> expression GREATER expression .)
+    GREATER         reduce using rule 52 (expression -> expression GREATER expression .)
+    LESS            reduce using rule 52 (expression -> expression GREATER expression .)
+    LBRACKET        reduce using rule 52 (expression -> expression GREATER expression .)
+    RPAREN          reduce using rule 52 (expression -> expression GREATER expression .)
+    RRPAREN         reduce using rule 52 (expression -> expression GREATER expression .)
+    COMMA           reduce using rule 52 (expression -> expression GREATER expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 52 (expression -> expression GREATER expression .) ]
+  ! MINUS           [ reduce using rule 52 (expression -> expression GREATER expression .) ]
+  ! TIMES           [ reduce using rule 52 (expression -> expression GREATER expression .) ]
+  ! DIVIDE          [ reduce using rule 52 (expression -> expression GREATER expression .) ]
+  ! MODULO          [ reduce using rule 52 (expression -> expression GREATER expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 113
+
+    (53) expression -> expression LESS expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 53 (expression -> expression LESS expression .)
+    COMP            reduce using rule 53 (expression -> expression LESS expression .)
+    AND             reduce using rule 53 (expression -> expression LESS expression .)
+    OR              reduce using rule 53 (expression -> expression LESS expression .)
+    NOT_EQUALS      reduce using rule 53 (expression -> expression LESS expression .)
+    GREATER_OR_EQUAL reduce using rule 53 (expression -> expression LESS expression .)
+    LESS_OR_EQUALS  reduce using rule 53 (expression -> expression LESS expression .)
+    GREATER         reduce using rule 53 (expression -> expression LESS expression .)
+    LESS            reduce using rule 53 (expression -> expression LESS expression .)
+    LBRACKET        reduce using rule 53 (expression -> expression LESS expression .)
+    RPAREN          reduce using rule 53 (expression -> expression LESS expression .)
+    RRPAREN         reduce using rule 53 (expression -> expression LESS expression .)
+    COMMA           reduce using rule 53 (expression -> expression LESS expression .)
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    MODULO          shift and go to state 88
+
+  ! PLUS            [ reduce using rule 53 (expression -> expression LESS expression .) ]
+  ! MINUS           [ reduce using rule 53 (expression -> expression LESS expression .) ]
+  ! TIMES           [ reduce using rule 53 (expression -> expression LESS expression .) ]
+  ! DIVIDE          [ reduce using rule 53 (expression -> expression LESS expression .) ]
+  ! MODULO          [ reduce using rule 53 (expression -> expression LESS expression .) ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+
+
+state 114
+
+    (54) expression -> expression MODULO expression .
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      reduce using rule 54 (expression -> expression MODULO expression .)
+    PLUS            reduce using rule 54 (expression -> expression MODULO expression .)
+    MINUS           reduce using rule 54 (expression -> expression MODULO expression .)
+    TIMES           reduce using rule 54 (expression -> expression MODULO expression .)
+    DIVIDE          reduce using rule 54 (expression -> expression MODULO expression .)
+    COMP            reduce using rule 54 (expression -> expression MODULO expression .)
+    AND             reduce using rule 54 (expression -> expression MODULO expression .)
+    OR              reduce using rule 54 (expression -> expression MODULO expression .)
+    NOT_EQUALS      reduce using rule 54 (expression -> expression MODULO expression .)
+    GREATER_OR_EQUAL reduce using rule 54 (expression -> expression MODULO expression .)
+    LESS_OR_EQUALS  reduce using rule 54 (expression -> expression MODULO expression .)
+    GREATER         reduce using rule 54 (expression -> expression MODULO expression .)
+    LESS            reduce using rule 54 (expression -> expression MODULO expression .)
+    MODULO          reduce using rule 54 (expression -> expression MODULO expression .)
+    LBRACKET        reduce using rule 54 (expression -> expression MODULO expression .)
+    RPAREN          reduce using rule 54 (expression -> expression MODULO expression .)
+    RRPAREN         reduce using rule 54 (expression -> expression MODULO expression .)
+    COMMA           reduce using rule 54 (expression -> expression MODULO expression .)
+
+  ! PLUS            [ shift and go to state 76 ]
+  ! MINUS           [ shift and go to state 77 ]
+  ! TIMES           [ shift and go to state 78 ]
+  ! DIVIDE          [ shift and go to state 79 ]
+  ! COMP            [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+  ! NOT_EQUALS      [ shift and go to state 83 ]
+  ! GREATER_OR_EQUAL [ shift and go to state 84 ]
+  ! LESS_OR_EQUALS  [ shift and go to state 85 ]
+  ! GREATER         [ shift and go to state 86 ]
+  ! LESS            [ shift and go to state 87 ]
+  ! MODULO          [ shift and go to state 88 ]
+
+
+state 115
+
+    (30) if -> IF expression block .
+
+    ELSE            reduce using rule 30 (if -> IF expression block .)
+    RETURN          reduce using rule 30 (if -> IF expression block .)
+    IF              reduce using rule 30 (if -> IF expression block .)
+    WHILE           reduce using rule 30 (if -> IF expression block .)
+    VARIABLE        reduce using rule 30 (if -> IF expression block .)
+    MINUS           reduce using rule 30 (if -> IF expression block .)
+    LPAREN          reduce using rule 30 (if -> IF expression block .)
+    INT             reduce using rule 30 (if -> IF expression block .)
+    FLOAT           reduce using rule 30 (if -> IF expression block .)
+    STRING          reduce using rule 30 (if -> IF expression block .)
+    TRUE            reduce using rule 30 (if -> IF expression block .)
+    FALSE           reduce using rule 30 (if -> IF expression block .)
+    NOT             reduce using rule 30 (if -> IF expression block .)
+    GET_ARRAY       reduce using rule 30 (if -> IF expression block .)
+    RBRACKET        reduce using rule 30 (if -> IF expression block .)
+
+
+state 116
+
+    (32) while -> WHILE expression block .
+
+    RETURN          reduce using rule 32 (while -> WHILE expression block .)
+    IF              reduce using rule 32 (while -> WHILE expression block .)
+    WHILE           reduce using rule 32 (while -> WHILE expression block .)
+    VARIABLE        reduce using rule 32 (while -> WHILE expression block .)
+    MINUS           reduce using rule 32 (while -> WHILE expression block .)
+    LPAREN          reduce using rule 32 (while -> WHILE expression block .)
+    INT             reduce using rule 32 (while -> WHILE expression block .)
+    FLOAT           reduce using rule 32 (while -> WHILE expression block .)
+    STRING          reduce using rule 32 (while -> WHILE expression block .)
+    TRUE            reduce using rule 32 (while -> WHILE expression block .)
+    FALSE           reduce using rule 32 (while -> WHILE expression block .)
+    NOT             reduce using rule 32 (while -> WHILE expression block .)
+    GET_ARRAY       reduce using rule 32 (while -> WHILE expression block .)
+    RBRACKET        reduce using rule 32 (while -> WHILE expression block .)
+
+
+state 117
+
+    (33) var_decl -> VARIABLE COLON type . EQUALS expression SEMICOLONS
+
+    EQUALS          shift and go to state 128
+
+
+state 118
+
+    (34) array_decl -> VARIABLE COLON LRPAREN . type RRPAREN SEMICOLONS
+    (36) type -> . INT_TYPE
+    (37) type -> . FLOAT_TYPE
+    (38) type -> . STRING_TYPE
+    (39) type -> . BOOL_TYPE
+    (40) type -> . VOID_TYPE
+
+    INT_TYPE        shift and go to state 24
+    FLOAT_TYPE      shift and go to state 25
+    STRING_TYPE     shift and go to state 26
+    BOOL_TYPE       shift and go to state 27
+    VOID_TYPE       shift and go to state 28
+
+    type                           shift and go to state 129
+
+state 119
+
+    (41) var_ass -> VARIABLE EQUALS expression . SEMICOLONS
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      shift and go to state 130
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 120
+
+    (35) array_ass -> VARIABLE LRPAREN expression . RRPAREN EQUALS expression SEMICOLONS
+    (64) expression -> VARIABLE LRPAREN expression . RRPAREN
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    RRPAREN         shift and go to state 131
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 121
+
+    (66) expression -> VARIABLE LPAREN argument_f . RPAREN
+
+    RPAREN          shift and go to state 132
+
+
+state 122
+
+    (70) argument_f -> arg_f .
+
+    RPAREN          reduce using rule 70 (argument_f -> arg_f .)
+
+
+state 123
+
+    (71) argument_f -> argf .
+
+    RPAREN          reduce using rule 71 (argument_f -> argf .)
+
+
+state 124
+
+    (68) arg_f -> expression .
+    (69) arg_f -> expression . COMMA arg_f
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    RPAREN          reduce using rule 68 (arg_f -> expression .)
+    COMMA           shift and go to state 133
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 125
+
+    (56) expression -> LPAREN expression RPAREN .
+
+    SEMICOLONS      reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    COMP            reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    NOT_EQUALS      reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    GREATER_OR_EQUAL reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    LESS_OR_EQUALS  reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    MODULO          reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    LBRACKET        reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    RRPAREN         reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 56 (expression -> LPAREN expression RPAREN .)
+
+
+state 126
+
+    (65) expression -> GET_ARRAY LRPAREN expression . RRPAREN
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    RRPAREN         shift and go to state 134
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 127
+
+    (64) expression -> VARIABLE LRPAREN expression . RRPAREN
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    RRPAREN         shift and go to state 135
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 128
+
+    (33) var_decl -> VARIABLE COLON type EQUALS . expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 136
+
+state 129
+
+    (34) array_decl -> VARIABLE COLON LRPAREN type . RRPAREN SEMICOLONS
+
+    RRPAREN         shift and go to state 137
+
+
+state 130
+
+    (41) var_ass -> VARIABLE EQUALS expression SEMICOLONS .
+
+    RETURN          reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    IF              reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    WHILE           reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    VARIABLE        reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    MINUS           reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    LPAREN          reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    INT             reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    FLOAT           reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    STRING          reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    TRUE            reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    FALSE           reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    NOT             reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    GET_ARRAY       reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+    RBRACKET        reduce using rule 41 (var_ass -> VARIABLE EQUALS expression SEMICOLONS .)
+
+
+state 131
+
+    (35) array_ass -> VARIABLE LRPAREN expression RRPAREN . EQUALS expression SEMICOLONS
+    (64) expression -> VARIABLE LRPAREN expression RRPAREN .
+
+    EQUALS          shift and go to state 138
+    SEMICOLONS      reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    PLUS            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    MINUS           reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    TIMES           reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    DIVIDE          reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    COMP            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    AND             reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    OR              reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    NOT_EQUALS      reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    GREATER_OR_EQUAL reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    LESS_OR_EQUALS  reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    GREATER         reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    LESS            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    MODULO          reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+
+
+state 132
+
+    (66) expression -> VARIABLE LPAREN argument_f RPAREN .
+
+    SEMICOLONS      reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    PLUS            reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    MINUS           reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    TIMES           reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    DIVIDE          reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    COMP            reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    AND             reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    OR              reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    NOT_EQUALS      reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    GREATER_OR_EQUAL reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    LESS_OR_EQUALS  reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    GREATER         reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    LESS            reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    MODULO          reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    LBRACKET        reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    RPAREN          reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    RRPAREN         reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+    COMMA           reduce using rule 66 (expression -> VARIABLE LPAREN argument_f RPAREN .)
+
+
+state 133
+
+    (69) arg_f -> expression COMMA . arg_f
+    (68) arg_f -> . expression
+    (69) arg_f -> . expression COMMA arg_f
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 124
+    arg_f                          shift and go to state 139
+
+state 134
+
+    (65) expression -> GET_ARRAY LRPAREN expression RRPAREN .
+
+    SEMICOLONS      reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    PLUS            reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    MINUS           reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    TIMES           reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    DIVIDE          reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    COMP            reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    AND             reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    OR              reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    NOT_EQUALS      reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    GREATER_OR_EQUAL reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    LESS_OR_EQUALS  reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    GREATER         reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    LESS            reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    MODULO          reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    LBRACKET        reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    RPAREN          reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    RRPAREN         reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+    COMMA           reduce using rule 65 (expression -> GET_ARRAY LRPAREN expression RRPAREN .)
+
+
+state 135
+
+    (64) expression -> VARIABLE LRPAREN expression RRPAREN .
+
+    SEMICOLONS      reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    PLUS            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    MINUS           reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    TIMES           reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    DIVIDE          reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    COMP            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    AND             reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    OR              reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    NOT_EQUALS      reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    GREATER_OR_EQUAL reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    LESS_OR_EQUALS  reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    GREATER         reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    LESS            reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    MODULO          reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    LBRACKET        reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    RPAREN          reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    RRPAREN         reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+    COMMA           reduce using rule 64 (expression -> VARIABLE LRPAREN expression RRPAREN .)
+
+
+state 136
+
+    (33) var_decl -> VARIABLE COLON type EQUALS expression . SEMICOLONS
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      shift and go to state 140
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 137
+
+    (34) array_decl -> VARIABLE COLON LRPAREN type RRPAREN . SEMICOLONS
+
+    SEMICOLONS      shift and go to state 141
+
+
+state 138
+
+    (35) array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS . expression SEMICOLONS
+    (42) expression -> . expression PLUS expression
+    (43) expression -> . expression MINUS expression
+    (44) expression -> . expression TIMES expression
+    (45) expression -> . expression DIVIDE expression
+    (46) expression -> . expression COMP expression
+    (47) expression -> . expression AND expression
+    (48) expression -> . expression OR expression
+    (49) expression -> . expression NOT_EQUALS expression
+    (50) expression -> . expression GREATER_OR_EQUAL expression
+    (51) expression -> . expression LESS_OR_EQUALS expression
+    (52) expression -> . expression GREATER expression
+    (53) expression -> . expression LESS expression
+    (54) expression -> . expression MODULO expression
+    (55) expression -> . MINUS expression
+    (56) expression -> . LPAREN expression RPAREN
+    (57) expression -> . INT
+    (58) expression -> . FLOAT
+    (59) expression -> . STRING
+    (60) expression -> . TRUE
+    (61) expression -> . FALSE
+    (62) expression -> . VARIABLE
+    (63) expression -> . NOT expression
+    (64) expression -> . VARIABLE LRPAREN expression RRPAREN
+    (65) expression -> . GET_ARRAY LRPAREN expression RRPAREN
+    (66) expression -> . VARIABLE LPAREN argument_f RPAREN
+
+    MINUS           shift and go to state 59
+    LPAREN          shift and go to state 60
+    INT             shift and go to state 61
+    FLOAT           shift and go to state 62
+    STRING          shift and go to state 63
+    TRUE            shift and go to state 64
+    FALSE           shift and go to state 65
+    VARIABLE        shift and go to state 74
+    NOT             shift and go to state 66
+    GET_ARRAY       shift and go to state 67
+
+    expression                     shift and go to state 142
+
+state 139
+
+    (69) arg_f -> expression COMMA arg_f .
+
+    RPAREN          reduce using rule 69 (arg_f -> expression COMMA arg_f .)
+
+
+state 140
+
+    (33) var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .
+
+    RETURN          reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    IF              reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    WHILE           reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    VARIABLE        reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    MINUS           reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    LPAREN          reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    INT             reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    FLOAT           reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    STRING          reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    TRUE            reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    FALSE           reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    NOT             reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    GET_ARRAY       reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+    RBRACKET        reduce using rule 33 (var_decl -> VARIABLE COLON type EQUALS expression SEMICOLONS .)
+
+
+state 141
+
+    (34) array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .
+
+    RETURN          reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    IF              reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    WHILE           reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    VARIABLE        reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    MINUS           reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    LPAREN          reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    INT             reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    FLOAT           reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    STRING          reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    TRUE            reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    FALSE           reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    NOT             reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    GET_ARRAY       reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+    RBRACKET        reduce using rule 34 (array_decl -> VARIABLE COLON LRPAREN type RRPAREN SEMICOLONS .)
+
+
+state 142
+
+    (35) array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression . SEMICOLONS
+    (42) expression -> expression . PLUS expression
+    (43) expression -> expression . MINUS expression
+    (44) expression -> expression . TIMES expression
+    (45) expression -> expression . DIVIDE expression
+    (46) expression -> expression . COMP expression
+    (47) expression -> expression . AND expression
+    (48) expression -> expression . OR expression
+    (49) expression -> expression . NOT_EQUALS expression
+    (50) expression -> expression . GREATER_OR_EQUAL expression
+    (51) expression -> expression . LESS_OR_EQUALS expression
+    (52) expression -> expression . GREATER expression
+    (53) expression -> expression . LESS expression
+    (54) expression -> expression . MODULO expression
+
+    SEMICOLONS      shift and go to state 143
+    PLUS            shift and go to state 76
+    MINUS           shift and go to state 77
+    TIMES           shift and go to state 78
+    DIVIDE          shift and go to state 79
+    COMP            shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+    NOT_EQUALS      shift and go to state 83
+    GREATER_OR_EQUAL shift and go to state 84
+    LESS_OR_EQUALS  shift and go to state 85
+    GREATER         shift and go to state 86
+    LESS            shift and go to state 87
+    MODULO          shift and go to state 88
+
+
+state 143
+
+    (35) array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .
+
+    RETURN          reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    IF              reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    WHILE           reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    VARIABLE        reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    MINUS           reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    LPAREN          reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    INT             reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    FLOAT           reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    STRING          reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    TRUE            reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    FALSE           reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    NOT             reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    GET_ARRAY       reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+    RBRACKET        reduce using rule 35 (array_ass -> VARIABLE LRPAREN expression RRPAREN EQUALS expression SEMICOLONS .)
+

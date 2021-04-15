@@ -1,0 +1,17 @@
+# teste 1 funcional
+decl oat():String
+
+def aot():String{
+    a:Int = 5;
+    b:Int = 10;
+    qwer:String ="";
+
+    if a > b{
+        qwer = "Hello";
+        return qwer;
+    }
+    else {
+        qwer = "Goodbye";
+    }
+}
+

@@ -1,0 +1,23 @@
+#teste 2 not working
+
+def quadrado():Void{
+
+    a:Int = 2;
+    b:Int = 10; 
+    c:Int = 5;
+    d:Int = 2;
+
+    quadrado:Boolean = is_quadrado(a,b,c);
+
+    return;
+}
+
+def is_quadrado(a:Int,b:Int,c:Int,d:Int):Int{ 
+
+    if a == b && a == c && a == d { 
+        return true;
+    }
+    else{
+        return false;
+    }
+}

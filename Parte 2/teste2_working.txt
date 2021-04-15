@@ -1,0 +1,32 @@
+# teste 2 funcional
+def main ():Void {
+
+    a:Int = 10;
+    b:Int = 2;
+    c:Int = (a + b);
+
+    MIn_val:Int = min(a,b);
+    Max_val:Int = max(a,b);
+    while MIn_val != Max_val {
+        MIn_val = MIn_val + 1;
+    }
+    return;   
+}
+
+def min(val1:Int, val2:Int):Int {
+    if(val1 < val2){
+        return val1;
+    }else{
+        return val2;
+    }
+    return val1;
+}
+
+def max(val1:Int, val2:Int):Int {
+    if(val1 < val2){
+        return val2;
+    }else{
+        return val1;
+    }
+    return val1;
+}
