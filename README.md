@@ -64,3 +64,69 @@ A program is made of several declarations or definitions:
 
 ######  Syntactic Errors
 Your compiler should detect errors in the input files. In the case of a unexpected character, it should be printed along with its line and column. The parser should resume after that character.
+
+## Phase 2
+
+During this phase, you will improve your compiler to detect and reject program which are semantically invalid. These are the programs that are successfully parsed, but contain errors that can be statically detected.
+
+ In particular, you should cover the following cases:
+
+
+- The arguments of functions should have the exact type. Example:
+```python
+  decl f2(a:Bool):Bool
+def f():Void {
+  f2(1); # <— 1:Int is not of type Bool. 
+  return; 
+}
+
+ ```
+  
+- A definition has the same contents, but also has a block, corresponding to the body of the function
+```python
+  def max (a:Int, b:Int):Int {
+    if a > b {
+      return a;
+    }
+    return b;
+  }
+```
+
+- Variable declarations and assignments should have the correct type. Invalid statements include: .
+```python 
+  a:Int = true;, a=1.0;.
+```
+
+
+ - return expressions should be of the same type of return type of the function. Three examples below:
+  ```python
+  def f():Int {
+  return; <-- return requires an Int expression.
+}
+def f():Void {
+  return "hello"; <-- return should not have an expression.
+}
+def f():Int {
+ return "hello"; <-- return expression expects Int, found "hello":String.
+} 
+ 
+ ```
+
+- if and while conditions expect booleans.
+- 
+- Boolean operators expect booleans (&&, ||, !)
+- 
+- Comparison and arithmetic operators expect either Int or Float (+,-,*,/,<,>,<=,>=), as long as they are of the same type.
+- 
+- The % operator requires integers.
+- 
+- Equality operators (==, !=) support Bool, Int or Float, as long as they are of the same type.
+- 
+- Index operator (a[i]) requires a to be of type array (“[something]”), i to be of type Int and a[i] is of type something.
+
+######  Syntactic Errors
+
+Your zip file should include two files: setup.sh, which will install all dependencies on a ubuntu-based linux; and run.sh which will run your compiler over the file passed as the first argument.
+
+Additionally, you should also have several examples of valid and invalid programs, apart from the ones provided.
+
