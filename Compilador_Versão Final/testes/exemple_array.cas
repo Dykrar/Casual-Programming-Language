@@ -1,0 +1,28 @@
+def arrays(n:Int):Void
+{
+	i:Int = 0;
+	marks:Int[10];
+
+	Print("Numero de elementos %d \n", n);
+	
+	sum:Int = 0;
+	o:Int = 20;
+	while (i<o)
+	{
+		
+		marks[i] = o;
+		o = o - 1;
+		sum = sum + o;
+	}
+	
+	average:Int = 0;
+	average = sum/n;
+	Print("Average  %d\n", average);
+	
+	return ;
+}
+
+def main():Int{
+	arrays(20);
+	return 0;
+}

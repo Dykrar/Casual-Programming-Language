@@ -1,0 +1,11 @@
+# teste 2 funcional
+def main ():Int {
+
+    b:Int = 2;
+    a:Int = lambda x:Int : (x + b);
+    c:Int = a(2);
+
+    Print("%d \n", c);
+    return 0;
+
+}

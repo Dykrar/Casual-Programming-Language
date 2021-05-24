@@ -1,0 +1,12 @@
+def fun(num1:Float, num2:Float):Float{
+    result:Float = num1 + num2;
+    return result;
+}
+def main():Void{
+    a:Float = 2.1;
+    b:Float = 2.6;
+    c:Float = fun(a,b);
+    Print("Resultado %f \n", c);
+    return;
+}
+

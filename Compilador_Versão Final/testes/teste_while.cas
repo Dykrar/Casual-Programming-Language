@@ -1,0 +1,12 @@
+def main():Void{
+	
+	a:Int = 0;
+	b:Int = 2;
+
+	while b >= 2{
+		b = b - 1;
+		a = (1 + 2) * b;
+	}
+	Print("%d \n", a);
+	return;
+}
